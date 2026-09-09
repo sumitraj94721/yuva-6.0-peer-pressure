@@ -7,12 +7,14 @@ type ButtonProps = {
   variant?: 'solid' | 'quiet' | 'outline' | 'text'
   size?: 'small' | 'medium'
   icon?: ReactNode
+  onClick?: () => void
+  type?: 'button' | 'submit'
 }
 
-export function Button({ children, to, variant = 'solid', size = 'medium', icon }: ButtonProps) {
+export function Button({ children, to, variant = 'solid', size = 'medium', icon, onClick, type = 'button' }: ButtonProps) {
   const className = `button button-${variant} button-${size}`
   const content = <>{children}{icon}</>
-  return to ? <Link className={className} to={to}>{content}</Link> : <button className={className} type="button">{content}</button>
+  return to ? <Link className={className} to={to}>{content}</Link> : <button className={className} type={type} onClick={onClick}>{content}</button>
 }
 
 export function Badge({ children, tone = 'cool' }: { children: ReactNode; tone?: 'cool' | 'warm' }) {
