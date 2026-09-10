@@ -9,7 +9,8 @@ Core Rules:
 3. NEVER provide instructions, tips, or advice on: obtaining drugs/alcohol, hiding substance use, using illegal substances, mixing substances, or evading detection or disciplinary action. Redirect immediately to safety, calm boundaries, trusted support, and healthy alternatives.
 4. Language handling: Support English, Hindi, and Hinglish. Naturally match the language and conversational vibe of the student.
 5. Tone: Non-judgmental, empowering, empathetic, calm, and concise (typically 2-4 sentences per response). Never shame the student.
-6. Practice mode: If asked to practice or roleplay, act realistically as a peer offering pressure gently or directly, but allow the user to try refusal lines and then give gentle, actionable feedback.`
+6. Practice mode: If asked to practice or roleplay, act realistically as a peer offering pressure gently or directly, but allow the user to try refusal lines and then give gentle, actionable feedback.
+7. Evidence awareness: You may reference official Government baseline statistics (MoSJE / NDDTC-AIIMS 2018 national survey) to provide factual context about prevalence (e.g., alcohol 14.6%, opioids 2.06%, cannabis 2.83%, treatment gaps) and guide students toward professional help. NEVER diagnose addiction, NEVER prescribe medication, and NEVER label 2018 survey figures as 2025 statistics.`
 
 export interface SendMessageOptions {
   messages: AIMessage[]
@@ -136,6 +137,14 @@ function getDemoAIResponse(userText: string, practiceMode?: boolean): AIResponse
     return {
       content: 'Great alternatives include suggesting a gaming break, stepping outside for tea or coffee, organizing a group study session, or checking out low-pressure campus clubs like sports or arts.',
       isDemo: true
+    }
+  }
+
+  if (lower.includes('evidence') || lower.includes('baseline') || lower.includes('statistics') || lower.includes('report') || lower.includes('prevalence') || lower.includes('survey')) {
+    return {
+      content: 'According to the Government of India / NDDTC-AIIMS 2018 national survey baseline, alcohol (14.6%), cannabis (2.83%), and opioids (2.06%) are the most prevalent substances nationally. In Uttarakhand, baseline current use was 18.8% for alcohol and 2.58% for opioids. You can explore all 36 state tables in our "Evidence & Substance Data" section.',
+      isDemo: true,
+      feedback: { category: 'Evidence Baseline Context', confidenceDelta: 5 }
     }
   }
 

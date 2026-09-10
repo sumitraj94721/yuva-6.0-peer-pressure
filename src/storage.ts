@@ -1,10 +1,30 @@
-export type ProgressState = { checkIns: number; scenarios: number; confidence: number; calmActivities: number; reports: number }
+export type ProgressState = {
+  checkIns: number
+  scenarios: number
+  confidence: number
+  calmActivities: number
+  reports: number
+  quizzesCompleted?: number
+  aiSessions?: number
+  resourcesViewed?: number
+  healthyChallenges?: number
+}
 
 const key = 'peershield-progress'
 const checkInKey = 'peershield-check-in'
 const reportKey = 'peershield-reports'
 
-export const defaultProgress: ProgressState = { checkIns: 0, scenarios: 0, confidence: 0, calmActivities: 0, reports: 0 }
+export const defaultProgress: ProgressState = {
+  checkIns: 0,
+  scenarios: 0,
+  confidence: 0,
+  calmActivities: 0,
+  reports: 0,
+  quizzesCompleted: 0,
+  aiSessions: 0,
+  resourcesViewed: 0,
+  healthyChallenges: 0
+}
 
 function read<T>(storageKey: string, fallback: T): T {
   try {
